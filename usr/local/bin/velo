@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+sudo pacman -Sy
+sudo pacman -S visual-studio-code-bin --noconfirm --needed
+sudo pacman -S github-desktop --noconfirm --needed
+sudo pacman -S notepadqq --noconfirm --needed
+sudo pacman -S ripgrep --noconfirm --needed
+sudo pacman -S meld --noconfirm --needed

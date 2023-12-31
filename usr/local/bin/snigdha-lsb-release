@@ -1,0 +1,7 @@
+#!/bin/bash
+#set -e
+
+# Author : Eshan Roy <eshan@snigdhaos.org>
+# URL    : https://snigdhaos.org/
+
+sudo cp /usr/local/share/snigdha/release/lsb-release-snigdha /etc/lsb-release

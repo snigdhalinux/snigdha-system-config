@@ -11,7 +11,7 @@ export PAGER='most'
 #export XMODIFIERS=@im=dbus
 #export QT_IM_MODULE=ibus
 
-PS1='[\u@\h \W]\$ '
+PS1="\e[0;31m┌──[\e[0;31m\u\e[0;00m@\e[0;32msnigdhaos\e[0;31m]\n└──╼\e[0;32m[$(ip -4 addr | grep -v '127.0.0.1' | grep -v 'secondary' | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | sed -z 's/\n/|/g;s/|\$/\n/' | rev | cut -c 2- | rev)]\[\e[0;31m\]\$(pwd) $ \[\e[0m\]"
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -84,11 +84,8 @@ alias setlocales="sudo localectl set-x11-keymap be && sudo localectl set-locale 
 alias unlock="sudo rm /var/lib/pacman/db.lck"
 alias rmpacmanlock="sudo rm /var/lib/pacman/db.lck"
 
-#arcolinux logout unlock
-alias rmlogoutlock="sudo rm /tmp/arcologout.lock"
-
 #which graphical card is working
-alias whichvga="/usr/local/bin/arcolinux-which-vga"
+alias whichvga="/usr/local/bin/snigdha-which-vga"
 
 #free
 alias free="free -mt"
@@ -121,7 +118,7 @@ alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias grub-update="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 #grub issue 08/2022
-alias install-grub-efi="sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArcoLinux"
+alias install-grub-efi="sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=SnigdhaLinux"
 
 #add new fonts
 alias update-fc='sudo fc-cache -fv'
@@ -143,8 +140,8 @@ alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
 
 #switch between displaymanager or bootsystem
-alias toboot="sudo /usr/local/bin/arcolinux-toboot"
-alias togrub="sudo /usr/local/bin/arcolinux-togrub"
+alias toboot="sudo /usr/local/bin/snigdha-toboot"
+alias togrub="sudo /usr/local/bin/snigdha-togrub"
 alias tolightdm="sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm --needed ; sudo systemctl enable lightdm.service -f ; echo 'Lightm is active - reboot now'"
 alias tosddm="sudo pacman -S sddm --noconfirm --needed ; sudo systemctl enable sddm.service -f ; echo 'Sddm is active - reboot now'"
 alias toly="sudo pacman -S ly --noconfirm --needed ; sudo systemctl enable ly.service -f ; echo 'Ly is active - reboot now'"
@@ -188,7 +185,7 @@ alias ram='rate-mirrors --allow-root --disable-comments arch | sudo tee /etc/pac
 alias rams='rate-mirrors --allow-root --disable-comments --protocol https arch  | sudo tee /etc/pacman.d/mirrorlist'
 
 #mounting the folder Public for exchange between host and guest on virtualbox
-alias vbm="sudo /usr/local/bin/arcolinux-vbox-share"
+alias vbm="sudo /usr/local/bin/snigdha-vbox-share"
 
 #enabling vmware services
 alias start-vmware="sudo systemctl enable --now vmtoolsd.service"
@@ -214,7 +211,7 @@ alias ytv-best="yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+besta
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl"
 
-#iso and version used to install ArcoLinux
+#iso and version used
 alias iso="cat /etc/dev-rel | awk -F '=' '/ISO/ {print $2}'"
 alias isoo="cat /etc/dev-rel"
 
@@ -250,7 +247,6 @@ alias ngrub="sudo $EDITOR /etc/default/grub"
 alias nconfgrub="sudo $EDITOR /boot/grub/grub.cfg"
 alias nmkinitcpio="sudo $EDITOR /etc/mkinitcpio.conf"
 alias nmirrorlist="sudo $EDITOR /etc/pacman.d/mirrorlist"
-alias narcomirrorlist="sudo $EDITOR /etc/pacman.d/arcolinux-mirrorlist"
 alias nsddm="sudo $EDITOR /etc/sddm.conf"
 alias nsddmk="sudo $EDITOR /etc/sddm.conf.d/kde_settings.conf"
 alias nfstab="sudo $EDITOR /etc/fstab"
@@ -287,23 +283,21 @@ alias fix-keyserver="[ -d ~/.gnupg ] || mkdir ~/.gnupg ; cp /etc/pacman.d/gnupg/
 
 #fixes
 alias fix-permissions="sudo chown -R $USER:$USER ~/.config ~/.local"
-alias keyfix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias key-fix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias keys-fix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias fixkey="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias fixkeys="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias fix-key="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias fix-keys="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
+alias keyfix="/usr/local/bin/snigdha-fix-pacman-databases-and-keys"
+alias key-fix="/usr/local/bin/snigdha-fix-pacman-databases-and-keys"
+alias keys-fix="/usr/local/bin/snigdha-fix-pacman-databases-and-keys"
+alias fixkey="/usr/local/bin/snigdha-fix-pacman-databases-and-keys"
+alias fixkeys="/usr/local/bin/snigdha-fix-pacman-databases-and-keys"
+alias fix-key="/usr/local/bin/snigdha-fix-pacman-databases-and-keys"
+alias fix-keys="/usr/local/bin/snigdha-fix-pacman-databases-and-keys"
 #fix-sddm-config is no longer an alias but an application - part of ATT
-#alias fix-sddm-config="/usr/local/bin/arcolinux-fix-sddm-config"
-alias fix-pacman-conf="/usr/local/bin/arcolinux-fix-pacman-conf"
-alias fix-pacman-keyserver="/usr/local/bin/arcolinux-fix-pacman-gpg-conf"
-alias fix-grub="/usr/local/bin/arcolinux-fix-grub"
-alias fixgrub="/usr/local/bin/arcolinux-fix-grub"
+alias fix-pacman-conf="/usr/local/bin/snigdha-fix-pacman-conf"
+alias fix-pacman-keyserver="/usr/local/bin/snigdha-fix-pacman-gpg-conf"
+alias fix-grub="/usr/local/bin/snigdha-fix-grub"
+alias fixgrub="/usr/local/bin/snigdha-fix-grub"
 
 #maintenance
 alias big="expac -H M '%m\t%n' | sort -h | nl"
-alias downgrada="sudo downgrade --ala-url https://ant.seedhost.eu/arcolinux/"
 
 #hblock (stop tracking with hblock)
 #use unhblock to stop using hblock
@@ -318,7 +312,7 @@ alias ssn="sudo shutdown now"
 alias sr="reboot"
 
 #update betterlockscreen images
-alias bls="betterlockscreen -u /usr/share/backgrounds/arcolinux/"
+alias bls="betterlockscreen -u /usr/share/backgrounds/snigdha-wallpapers/"
 
 #give the list of all installed desktops - xsessions desktops
 alias xd="ls /usr/share/xsessions"
@@ -380,18 +374,9 @@ alias lta="leftwm-theme apply"
 alias ltupd="leftwm-theme update"
 alias ltupg="leftwm-theme upgrade"
 
-#arcolinux applications
 #att is a symbolic link now
-#alias att="archlinux-tweak-tool"
-alias adt="arcolinux-desktop-trasher"
-alias abl="arcolinux-betterlockscreen"
-alias agm="arcolinux-get-mirrors"
-alias amr="arcolinux-mirrorlist-rank-info"
-alias aom="arcolinux-osbeck-as-mirror"
-alias ars="arcolinux-reflector-simple"
-alias atm="arcolinux-tellme"
-alias avs="arcolinux-vbox-share"
-alias awa="arcolinux-welcome-app"
+alias avs="snigdha-vbox-share"
+alias awa="snigdha-welcome"
 
 #git
 alias rmgitcache="rm -r ~/.cache/git"
@@ -417,7 +402,6 @@ neofetch
 #hfetch
 #sfetch
 #ufetch
-#ufetch-arco
 #pfetch
 #sysinfo
 #sysinfo-retro

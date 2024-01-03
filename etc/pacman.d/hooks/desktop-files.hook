@@ -22,4 +22,4 @@ Target = slimbookbattery
 [Action]
 Description = Pacman hook for desktop files
 When = PostTransaction
-Exec = /usr/local/bin/arcolinux-fix-desktop-files
+Exec = /usr/local/bin/snigdha-fix-desktop-files

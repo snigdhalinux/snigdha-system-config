@@ -7,4 +7,4 @@ Target = filesystem
 [Action]
 Description = Apply Snigdha OS specific logo
 When = PostTransaction
-Exec = /bin/sh -c "cp /usr/share/pixmaps/snigdha.svg /usr/share/pixmaps/archlinux.svg"
+Exec = /bin/sh -c "cp /usr/share/pixmaps/snigdha-hello.svg /usr/share/pixmaps/archlinux.svg"
